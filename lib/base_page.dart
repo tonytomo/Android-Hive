@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pab_dompet/budget_page.dart';
-import 'package:pab_dompet/debt_page.dart';
-import 'package:pab_dompet/graph_page.dart';
-import 'package:pab_dompet/home_page.dart';
+// Import all the pages here
 
 class Base extends StatefulWidget {
   @override
@@ -10,80 +7,61 @@ class Base extends StatefulWidget {
 }
 
 class _BaseState extends State<Base> {
+  // All pages controller
   PageController _pageController = PageController();
-  List<Widget> _screen = [MainPage(), Budget(), Debt(), Graph()];
 
+  // Add pages for navigation
+  // List<Widget> _screen = [Page1(), Page2(), Page3(), Page4()];
+
+
+  // Selected index differentiation
+  // Set index to 0
   int _selectedIndex = 0;
-
+  // When change to another page
   _onPageChanged(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
-
+  // When item on the navigation is tapped
   _onItemTapped(int selectedIndex) {
     _pageController.jumpToPage(selectedIndex);
   }
 
+
+  // Page view and navigation
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
         controller: _pageController,
-        children: _screen,
+
+        // Navigation list as children
+        // children: _screen,
+
         onPageChanged: _onPageChanged,
         physics: NeverScrollableScrollPhysics(),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: _onItemTapped,
-        type: BottomNavigationBarType.fixed,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.account_balance_wallet_outlined,
-              color: _selectedIndex == 0 ? Colors.teal[700] : Colors.grey[400],
-            ),
-            title: Text("Home",
-                style: TextStyle(
-                    color: _selectedIndex == 0
-                        ? Colors.teal[700]
-                        : Colors.grey[400])),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.calculate_outlined,
-              color: _selectedIndex == 1 ? Colors.teal[700] : Colors.grey[400],
-            ),
-            title: Text("Budget",
-                style: TextStyle(
-                    color: _selectedIndex == 1
-                        ? Colors.teal[700]
-                        : Colors.grey[400])),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.monetization_on_outlined,
-              color: _selectedIndex == 2 ? Colors.teal[700] : Colors.grey[400],
-            ),
-            title: Text("Debt",
-                style: TextStyle(
-                    color: _selectedIndex == 2
-                        ? Colors.teal[700]
-                        : Colors.grey[400])),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.insert_chart_outlined_rounded,
-              color: _selectedIndex == 3 ? Colors.teal[700] : Colors.grey[400],
-            ),
-            title: Text("Graph",
-                style: TextStyle(
-                    color: _selectedIndex == 3
-                        ? Colors.teal[700]
-                        : Colors.grey[400])),
-          ),
-        ],
-      ),
+      // NAVIGATION
+      // bottomNavigationBar: BottomNavigationBar(
+      //   onTap: _onItemTapped,
+      //   type: BottomNavigationBarType.fixed,
+      //   items: [
+
+          // Duplicate this widget if you have more page
+          // BottomNavigationBarItem(
+          //   icon: Icon(
+          //     Icons.account_balance_wallet_outlined,
+          //     color: _selectedIndex == 0 ? Colors.teal[700] : Colors.grey[400],
+          //   ),
+          //   title: Text("Home",
+          //       style: TextStyle(
+          //           color: _selectedIndex == 0
+          //               ? Colors.teal[700]
+          //               : Colors.grey[400])),
+          // ),
+        // ],
+      // );
     );
   }
 }
